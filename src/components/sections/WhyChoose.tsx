@@ -1,51 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
-
-// Service data with images
-const services = [
-  {
-    title: "2D Design",
-    shortDesc: "Professional 2D floor plans and layout designs for your space.",
-    image:
-      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "3D Design",
-    shortDesc: "Realistic 3D visualization to see your space before execution.",
-    image:
-      "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "VR Tool",
-    shortDesc: "Experience your future space with immersive VR technology.",
-    image:
-      "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Turnkey Projects",
-    shortDesc: "Complete end-to-end project management from start to finish.",
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Renovation",
-    shortDesc: "Transform existing spaces with modern renovation solutions.",
-    image:
-      "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Carpentry Work",
-    shortDesc: "Expert carpentry services for custom furniture and woodwork.",
-    image:
-      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop",
-  },
-  {
-    title: "Labor Services",
-    shortDesc:
-      "Professional electrician, painting, and skilled labor services.",
-    image:
-      "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop",
-  },
-];
+import { services as sharedServices } from "../../data/services";
 
 const Services: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -101,7 +55,7 @@ const Services: React.FC = () => {
 
         {/* Services Grid - Bento Style */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {services.map((service, index) => (
+          {sharedServices.map((service, index) => (
             <div
               key={index}
               onMouseEnter={() => setHoveredIndex(index)}
@@ -125,7 +79,7 @@ const Services: React.FC = () => {
               {/* Image */}
               <img
                 src={service.image}
-                alt={service.title}
+                alt={service.title || service.label}
                 className={`w-full h-full object-cover transition-all duration-700
                   ${
                     hoveredIndex === index
@@ -178,7 +132,7 @@ const Services: React.FC = () => {
                       hoveredIndex === index ? "text-[#C9A24D]" : ""
                     }`}
                 >
-                  {service.title}
+                  {service.title || service.label}
                 </h3>
 
                 {/* Description */}

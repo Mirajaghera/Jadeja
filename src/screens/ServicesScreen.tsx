@@ -1,5 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { Mail, Phone, MapPin, Award, Users, Target } from "lucide-react";
+import { services } from "../data/services";
+import founderImage from "../assets/image.jpg";
 
 const ServicesScreen: React.FC = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -15,50 +17,12 @@ const ServicesScreen: React.FC = () => {
     return () => observer.disconnect();
   }, []);
 
-  const servicesWithImages = [
-    {
-      name: "2D Design",
-      desc: "Professional 2D floor plans and layout designs to visualize your space perfectly.",
-      image:
-        "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-      name: "3D Design",
-      desc: "Realistic 3D visualization to see your future space before execution begins.",
-      image:
-        "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-      name: "VR Tool",
-      desc: "Experience your future space with immersive virtual reality technology.",
-      image:
-        "https://images.unsplash.com/photo-1593508512255-86ab42a8e620?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-      name: "Turnkey Projects",
-      desc: "Complete end-to-end project management from concept to completion with zero hassle.",
-      image:
-        "https://images.unsplash.com/photo-1600607687644-c7171b42498f?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-      name: "Renovation",
-      desc: "Transform existing spaces with modern renovation solutions and expert craftsmanship.",
-      image:
-        "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-      name: "Carpentry Work",
-      desc: "Expert carpentry services for custom furniture, woodwork, and premium finishes.",
-      image:
-        "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?q=80&w=800&auto=format&fit=crop",
-    },
-    {
-      name: "Labor Services",
-      desc: "Professional electrician, painting, and skilled labor services for complete solutions.",
-      image:
-        "https://images.unsplash.com/photo-1621905251189-08b45d6a269e?q=80&w=800&auto=format&fit=crop",
-    },
-  ];
+  // Use shared services data
+  const servicesWithImages = services.map((service) => ({
+    name: service.title || service.label,
+    desc: service.shortDesc,
+    image: service.image,
+  }));
 
   const values = [
     {
@@ -108,25 +72,22 @@ const ServicesScreen: React.FC = () => {
             >
               <span className="inline-flex items-center gap-3 text-[#C9A24D] text-xs tracking-[0.3em] uppercase mb-4">
                 <span className="w-8 h-px bg-[#C9A24D]" />
-                About Us
+                Our Services
               </span>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white leading-tight mt-4">
-                JADEJA
-                <span className="block text-[#C9A24D] mt-2">
-                  Interior Studio
-                </span>
+                Transforming
+                <span className="block text-[#C9A24D] mt-2">Your Spaces</span>
               </h1>
 
               <p className="text-xl md:text-2xl text-white/80 mt-6 italic font-light">
-                "Your Dream, Our Craft."
+                "Excellence in Every Detail"
               </p>
 
               <p className="text-white/70 mt-8 text-base md:text-lg leading-relaxed">
-                We are a passionate team dedicated to transforming spaces into
-                beautiful, functional environments. With expertise in interior
-                design and furniture craftsmanship, we bring your vision to life
-                with precision and care.
+                From concept to completion, we offer comprehensive interior
+                solutions tailored to your unique vision. Explore our range of
+                services designed to create stunning, functional spaces.
               </p>
             </div>
 
@@ -151,15 +112,86 @@ const ServicesScreen: React.FC = () => {
         </div>
       </section>
 
+      {/* Founder Section */}
+      <section className="py-20 md:py-28 bg-[#0a0a0a]">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* Left - Founder Image */}
+            <div className="relative">
+              <div className="relative overflow-hidden rounded-2xl">
+                <img
+                  src={founderImage}
+                  alt="Founder - Jadeja Interior Studio"
+                  className="w-full h-[500px] md:h-[590px] object-cover"
+                />
+                <div className="absolute inset-0 border-4 border-[#C9A24D]/20 rounded-2xl" />
+              </div>
+              {/* Decorative Element */}
+              <div className="absolute -bottom-6 -right-6 w-32 h-32 border-2 border-[#C9A24D]/30 rounded-2xl hidden lg:block" />
+              <div className="absolute -top-6 -left-6 w-24 h-24 bg-[#C9A24D]/10 rounded-2xl hidden lg:block" />
+            </div>
+
+            {/* Right - Founder Message */}
+            <div>
+              <span className="inline-flex items-center gap-3 text-[#C9A24D] text-xs tracking-[0.3em] uppercase mb-4">
+                <span className="w-8 h-px bg-[#C9A24D]" />
+                From Our Founder
+              </span>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-4">
+                A Message from the{" "}
+                <span className="text-[#C9A24D]">Founder</span>
+              </h2>
+
+              {/* Quote */}
+              <div className="mt-8 relative">
+                <svg
+                  className="absolute -top-4 -left-4 w-12 h-12 text-[#C9A24D]/20"
+                  viewBox="0 0 24 24"
+                  fill="currentColor"
+                >
+                  <path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z" />
+                </svg>
+
+                <p className="text-white/80 text-lg md:text-xl leading-relaxed italic pl-8">
+                  "Every space has a story waiting to be told. At Jadeja
+                  Interior Studio, we don't just design interiors – we craft
+                  experiences that reflect your personality, aspirations, and
+                  lifestyle. Our commitment is to transform your vision into
+                  reality with uncompromising quality and attention to detail."
+                </p>
+              </div>
+
+              <p className="text-white/70 mt-6 text-base md:text-lg leading-relaxed">
+                With over 15 years of experience in the interior design
+                industry, we have had the privilege of transforming thousands of
+                homes and commercial spaces across Rajkot. Our philosophy is
+                simple – listen to our clients, understand their needs, and
+                deliver beyond expectations.
+              </p>
+
+              <div className="mt-8 pt-8 border-t border-white/10">
+                <p className="text-[#C9A24D] font-semibold text-xl">
+                  Mr. Jadeja
+                </p>
+                <p className="text-white/60 text-sm mt-1">
+                  Founder & Principal Designer
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* Services We Offer - Antra Style */}
       <section className="py-16 md:py-20 lg:py-28 bg-[#111111]">
         <div className="max-w-7xl mx-auto px-4 sm:px-6">
           <div className="text-center mb-10 md:mb-16">
             <span className="text-white text-xs tracking-[0.25em] uppercase font-semibold">
-              What We Do
+              What We Offer
             </span>
             <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold text-white mt-3">
-              Our <span className="text-[#C9A24D]">Expertise</span>
+              Our <span className="text-[#C9A24D]">Services</span>
             </h2>
           </div>
 
@@ -298,102 +330,133 @@ const ServicesScreen: React.FC = () => {
         </div>
       </section>
 
-      {/* Our Values */}
-      <section className="py-20 md:py-28 bg-[#0a0a0a]">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <span className="text-white text-xs tracking-[0.25em] uppercase font-semibold">
-              Why Choose Us
-            </span>
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mt-3">
-              Our <span className="text-[#C9A24D]">Values</span>
-            </h2>
-          </div>
+      {/* Shared Blueprint Background Container for Why Choose Us and Get In Touch */}
+      <div
+        className="relative"
+        style={{
+          backgroundImage: `url('https://icsaconstrucciones.com/images/bg/bg-12.jpg')`,
+          backgroundSize: "cover",
+          backgroundPosition: "center",
+          backgroundAttachment: "fixed",
+        }}
+      >
+        {/* Gold Blueprint Grid Overlay */}
+        <div
+          className="absolute inset-0 z-[1] opacity-[0.08]"
+          style={{
+            backgroundImage: `url("data:image/svg+xml,%3Csvg width='120' height='120' viewBox='0 0 120 120' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' stroke='%23C9A24D' stroke-width='0.5'%3E%3Cpath d='M0 60h120M60 0v120'/%3E%3C/g%3E%3C/svg%3E")`,
+          }}
+        />
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {values.map((value, index) => (
-              <div
-                key={index}
-                className="text-center p-8 bg-[#111111] hover:bg-white hover:shadow-xl 
-                  transition-all duration-300 border border-transparent hover:border-[#C9A24D]/20"
-              >
-                <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-[#C9A24D] to-[#a08050] rounded-full flex items-center justify-center">
-                  <value.icon
-                    className="w-8 h-8 text-white"
-                    strokeWidth={1.5}
-                  />
+        {/* Light overlay for readability */}
+        <div className="absolute inset-0 bg-white/70 z-[2]" />
+
+        {/* Our Values */}
+        <section className="py-20 md:py-28 relative z-10">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <span className="inline-flex items-center gap-3 text-[#C9A24D] text-xs tracking-[0.3em] uppercase mb-4">
+                <span className="w-8 h-px bg-[#C9A24D]" />
+                Why Choose Us
+                <span className="w-8 h-px bg-[#C9A24D]" />
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1a1a1a] mt-3">
+                Our <span className="text-[#C9A24D]">Values</span>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {values.map((value, index) => (
+                <div
+                  key={index}
+                  className="text-center p-8 bg-white rounded-2xl shadow-md hover:shadow-2xl 
+                    transition-all duration-300 transform hover:-translate-y-2 border border-[#C9A24D]/10"
+                >
+                  <div className="w-16 h-16 mx-auto mb-6 bg-gradient-to-br from-[#C9A24D] to-[#a08050] rounded-full flex items-center justify-center">
+                    <value.icon
+                      className="w-8 h-8 text-white"
+                      strokeWidth={1.5}
+                    />
+                  </div>
+                  <h3 className="text-xl font-semibold text-[#1a1a1a] mb-3">
+                    {value.title}
+                  </h3>
+                  <p className="text-[#1a1a1a]/70 text-sm leading-relaxed">
+                    {value.desc}
+                  </p>
                 </div>
-                <h3 className="text-xl font-semibold text-white mb-3">
-                  {value.title}
-                </h3>
-                <p className="text-white/60 text-sm leading-relaxed">
-                  {value.desc}
-                </p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Information */}
-      <section className="py-20 md:py-28 bg-[#1a1a1a] text-white">
-        <div className="max-w-7xl mx-auto px-6">
-          <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
-              Get In <span className="text-[#C9A24D]">Touch</span>
-            </h2>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
-            {/* Phone */}
-            <a
-              href="tel:+919725146804"
-              className="flex flex-col items-center p-8 bg-white/5 backdrop-blur-sm border border-white/10 
-                hover:bg-white/10 hover:border-[#C9A24D]/30 transition-all duration-300 group"
-            >
-              <Phone className="w-10 h-10 text-[#C9A24D] mb-4 group-hover:scale-110 transition-transform" />
-              <span className="text-white/60 text-xs uppercase tracking-wider mb-2">
-                Call Us
-              </span>
-              <span className="text-white font-semibold text-lg">
-                +91 9725146804
-              </span>
-              <span className="text-white/40 text-sm mt-1">Manan Khunt</span>
-            </a>
-
-            {/* Email */}
-            <a
-              href="mailto:jadeja@gmail.com"
-              className="flex flex-col items-center p-8 bg-white/5 backdrop-blur-sm border border-white/10 
-                hover:bg-white/10 hover:border-[#C9A24D]/30 transition-all duration-300 group"
-            >
-              <Mail className="w-10 h-10 text-[#C9A24D] mb-4 group-hover:scale-110 transition-transform" />
-              <span className="text-white/60 text-xs uppercase tracking-wider mb-2">
-                Email Us
-              </span>
-              <span className="text-white font-medium text-sm text-center break-all">
-                jadeja@gmail.com
-              </span>
-            </a>
-
-            {/* Address */}
-            <div
-              className="flex flex-col items-center p-8 bg-white/5 backdrop-blur-sm border border-white/10 
-                hover:bg-white/10 hover:border-[#C9A24D]/30 transition-all duration-300 group"
-            >
-              <MapPin className="w-10 h-10 text-[#C9A24D] mb-4 group-hover:scale-110 transition-transform" />
-              <span className="text-white/60 text-xs uppercase tracking-wider mb-2">
-                Visit Us
-              </span>
-              <span className="text-white font-medium text-sm text-center">
-                219, Shyamal sanskruti, movdi pal road,
-                <br />
-                nr. Vagad chowk, Rajkot - 360004
-              </span>
+              ))}
             </div>
           </div>
-        </div>
-      </section>
+        </section>
+
+        {/* Contact Information */}
+        <section className="py-20 md:py-28 relative z-10">
+          <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+              <span className="inline-flex items-center gap-3 text-[#C9A24D] text-xs tracking-[0.3em] uppercase mb-4">
+                <span className="w-8 h-px bg-[#C9A24D]" />
+                Contact Us
+                <span className="w-8 h-px bg-[#C9A24D]" />
+              </span>
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#1a1a1a]">
+                Get In <span className="text-[#C9A24D]">Touch</span>
+              </h2>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+              {/* Phone */}
+              <a
+                href="tel:+919725146804"
+                className="flex flex-col items-center p-8 bg-white rounded-2xl shadow-md border border-[#C9A24D]/10 
+                  hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group"
+              >
+                <Phone className="w-10 h-10 text-[#C9A24D] mb-4 group-hover:scale-110 transition-transform" />
+                <span className="text-[#1a1a1a]/60 text-xs uppercase tracking-wider mb-2">
+                  Call Us
+                </span>
+                <span className="text-[#1a1a1a] font-semibold text-lg">
+                  +91 9725146804
+                </span>
+                <span className="text-[#1a1a1a]/50 text-sm mt-1">
+                  Manan Khunt
+                </span>
+              </a>
+
+              {/* Email */}
+              <a
+                href="mailto:jadeja@gmail.com"
+                className="flex flex-col items-center p-8 bg-white rounded-2xl shadow-md border border-[#C9A24D]/10 
+                  hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group"
+              >
+                <Mail className="w-10 h-10 text-[#C9A24D] mb-4 group-hover:scale-110 transition-transform" />
+                <span className="text-[#1a1a1a]/60 text-xs uppercase tracking-wider mb-2">
+                  Email Us
+                </span>
+                <span className="text-[#1a1a1a] font-medium text-sm text-center break-all">
+                  jadeja@gmail.com
+                </span>
+              </a>
+
+              {/* Address */}
+              <div
+                className="flex flex-col items-center p-8 bg-white rounded-2xl shadow-md border border-[#C9A24D]/10 
+                  hover:shadow-2xl transform hover:-translate-y-2 transition-all duration-300 group"
+              >
+                <MapPin className="w-10 h-10 text-[#C9A24D] mb-4 group-hover:scale-110 transition-transform" />
+                <span className="text-[#1a1a1a]/60 text-xs uppercase tracking-wider mb-2">
+                  Visit Us
+                </span>
+                <span className="text-[#1a1a1a] font-medium text-sm text-center">
+                  219, Shyamal sanskruti, movdi pal road,
+                  <br />
+                  nr. Vagad chowk, Rajkot - 360004
+                </span>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
     </div>
   );
 };
