@@ -5,9 +5,13 @@ import {
   Image as ImageIcon,
   Menu,
   X,
-  MessageCircle,
+  Phone,
 } from "lucide-react";
 import logo from "../../assets/logo.webp";
+import {
+  services as sharedServices,
+  products as sharedProducts,
+} from "../../data/services";
 
 interface NavigationProps {
   activeTab: string;
@@ -23,6 +27,11 @@ const Navigation: React.FC<NavigationProps> = ({
   setIsMobileMenuOpen,
 }) => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
+  const [mobileProductsOpen, setMobileProductsOpen] = useState(false);
+  const [navSource, setNavSource] = useState<"services" | "products" | null>(
+    null
+  );
 
   useEffect(() => {
     const handleScroll = () => {
@@ -39,12 +48,17 @@ const Navigation: React.FC<NavigationProps> = ({
     { id: "gallery", label: "Portfolio", icon: ImageIcon },
   ];
 
-  const handleWhatsAppClick = () => {
-    window.open("https://wa.me/919725146804", "_blank");
-  };
+  const servicesItems = sharedServices.map((s) => ({
+    id: s.id,
+    label: s.label,
+  }));
+  const productsItems = sharedProducts.map((p) => ({
+    id: p.id,
+    label: p.label,
+  }));
 
-  // Determine if navbar should be transparent (only on home and at top)
-  const isTransparent = activeTab === "home" && !isScrolled;
+  // Navbar is transparent at top of page on all screens
+  const isTransparent = !isScrolled;
 
   return (
     <nav
@@ -92,17 +106,97 @@ const Navigation: React.FC<NavigationProps> = ({
               </button>
             ))}
 
+            {/* Services Dropdown */}
+            <div className="relative group">
+              <button
+                className={`relative px-5 py-2.5 text-sm font-medium transition-all duration-300 tracking-wide ${
+                  servicesItems.some((s) => s.id === activeTab) &&
+                  navSource === "services"
+                    ? "text-white"
+                    : "text-white/70 hover:text-white"
+                }`}
+              >
+                Services
+                {/* Active indicator for Services */}
+                {servicesItems.some((s) => s.id === activeTab) &&
+                  navSource === "services" && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C9A24D]" />
+                  )}
+              </button>
+
+              <div className="absolute right-0 mt-2 w-56 bg-black/90 border border-white/5 rounded-md shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transform scale-95 group-hover:scale-100 transition-all duration-200">
+                <div className="py-2">
+                  {servicesItems.map((s) => (
+                    <button
+                      key={s.id}
+                      onClick={() => {
+                        setNavSource("services");
+                        setActiveTab(s.id);
+                      }}
+                      className={`w-full text-left px-4 py-2 text-sm hover:bg-white/5 ${
+                        activeTab === s.id && navSource === "services"
+                          ? "text-[#C9A24D] bg-white/5"
+                          : "text-white/80 hover:text-white"
+                      }`}
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Products Dropdown */}
+            <div className="relative group">
+              <button
+                className={`relative px-5 py-2.5 text-sm font-medium transition-all duration-300 tracking-wide ${
+                  productsItems.some((p) => p.id === activeTab) &&
+                  navSource === "products"
+                    ? "text-white"
+                    : "text-white/70 hover:text-white"
+                }`}
+              >
+                Products
+                {/* Active indicator for Products */}
+                {productsItems.some((p) => p.id === activeTab) &&
+                  navSource === "products" && (
+                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-[#C9A24D]" />
+                  )}
+              </button>
+
+              <div className="absolute right-0 mt-2 w-56 bg-black/90 border border-white/5 rounded-md shadow-lg opacity-0 group-hover:opacity-100 invisible group-hover:visible transform scale-95 group-hover:scale-100 transition-all duration-200">
+                <div className="py-2">
+                  {productsItems.map((p) => (
+                    <button
+                      key={p.id}
+                      onClick={() => {
+                        setNavSource("products");
+                        setActiveTab(p.id);
+                      }}
+                      className={`w-full text-left px-4 py-2 text-sm hover:bg-white/5 ${
+                        activeTab === p.id && navSource === "products"
+                          ? "text-[#C9A24D] bg-white/5"
+                          : "text-white/80 hover:text-white"
+                      }`}
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+
             {/* CTA Button */}
             <button
-              onClick={handleWhatsAppClick}
+              onClick={() => setActiveTab("contact")}
               className={`ml-4 px-6 py-2.5 rounded-md text-sm font-semibold transition-all duration-500 flex items-center gap-2 ${
                 isTransparent
                   ? "bg-[#C9A24D] text-white hover:bg-[#d4b985] shadow-lg shadow-[#C9A24D]/20"
                   : "bg-[#C9A24D] text-white hover:bg-[#d4b985] shadow-lg shadow-[#C9A24D]/30"
               }`}
             >
-              <MessageCircle className="w-4 h-4" />
-              Let's Discuss
+              <Phone className="w-4 h-4" />
+              Contact Us
             </button>
           </div>
 
@@ -143,12 +237,83 @@ const Navigation: React.FC<NavigationProps> = ({
                 {item.label}
               </button>
             ))}
+
+            {/* Mobile Services Toggle */}
+            <div>
+              <button
+                onClick={() => setMobileServicesOpen((s) => !s)}
+                className="w-full flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-medium text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
+              >
+                <span className="flex items-center">
+                  <Briefcase className="w-5 h-5 mr-3" />
+                  Services
+                </span>
+                <span className="text-white/60">
+                  {mobileServicesOpen ? "−" : "+"}
+                </span>
+              </button>
+
+              {mobileServicesOpen && (
+                <div className="mt-2 space-y-1 pl-12">
+                  {servicesItems.map((s) => (
+                    <button
+                      key={s.id}
+                      onClick={() => {
+                        setNavSource("services");
+                        setActiveTab(s.id);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-md text-sm text-white/80 hover:text-white hover:bg-white/5"
+                    >
+                      {s.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {/* Mobile Products Toggle */}
+            <div>
+              <button
+                onClick={() => setMobileProductsOpen((s) => !s)}
+                className="w-full flex items-center justify-between px-4 py-3.5 rounded-lg text-base font-medium text-white/70 hover:text-white hover:bg-white/10 transition-all duration-300"
+              >
+                <span className="flex items-center">
+                  <ImageIcon className="w-5 h-5 mr-3" />
+                  Products
+                </span>
+                <span className="text-white/60">
+                  {mobileProductsOpen ? "−" : "+"}
+                </span>
+              </button>
+
+              {mobileProductsOpen && (
+                <div className="mt-2 space-y-1 pl-12">
+                  {productsItems.map((p) => (
+                    <button
+                      key={p.id}
+                      onClick={() => {
+                        setNavSource("products");
+                        setActiveTab(p.id);
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="w-full text-left px-3 py-2 rounded-md text-sm text-white/80 hover:text-white hover:bg-white/5"
+                    >
+                      {p.label}
+                    </button>
+                  ))}
+                </div>
+              )}
+            </div>
             <button
-              onClick={handleWhatsAppClick}
+              onClick={() => {
+                setActiveTab("contact");
+                setIsMobileMenuOpen(false);
+              }}
               className="w-full flex items-center justify-center px-4 py-3.5 mt-4 bg-[#C9A24D] text-white rounded-lg text-base font-semibold shadow-lg shadow-[#C9A24D]/30 hover:bg-[#d4b985] transition-all duration-300"
             >
-              <MessageCircle className="w-5 h-5 mr-2" />
-              Let's Discuss
+              <Phone className="w-5 h-5 mr-2" />
+              Contact Us
             </button>
           </div>
         </div>
