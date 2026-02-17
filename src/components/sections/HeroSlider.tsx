@@ -1,24 +1,23 @@
 import React, { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
+import image1 from "../../assets/image1.webp";
+import image2 from "../../assets/image2.webp";
+import image3 from "../../assets/image3.webp";
 const heroSlides = [
   {
-    image:
-      "https://images.unsplash.com/photo-1600566753086-00f18fb6b3ea?q=80&w=2000&auto=format&fit=crop",
+    image: image1,
     headline1: "Transforming Spaces",
     headline2: "Into Masterpieces",
     tagline: "Luxury Living Redefined",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?q=80&w=2000&auto=format&fit=crop",
+    image: image2,
     headline1: "Where Elegance",
     headline2: "Meets Innovation",
     tagline: "Modern Interior Excellence",
   },
   {
-    image:
-      "https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop",
+    image: image3,
     headline1: "Crafting Dreams",
     headline2: "With Timeless Design",
     tagline: "Premium Design Studio",
