@@ -1,6 +1,6 @@
 import React from "react";
 import HeroSlider from "../components/sections/HeroSlider";
-import Services from "../components/sections/WhyChoose";
+// import Services from "../components/sections/WhyChoose";
 import ProcessSection from "../components/sections/ProcessSection";
 import FeatureBox from "../components/sections/FeatureBox";
 import PortfolioPreview from "../components/sections/PortfolioPreview";
@@ -8,15 +8,13 @@ import Testimonials from "../components/sections/Testimonials";
 import ExcellenceBox from "../components/sections/ExcellenceBox";
 import CTABanner from "../components/sections/CTABanner";
 
-interface HomeScreenProps {
-  setActiveTab: (tab: string) => void;
-}
-
-const HomeScreen: React.FC<HomeScreenProps> = ({ setActiveTab }) => {
+const HomeScreen: React.FC = () => {
   return (
     <div className="animate-fade-in">
-      <HeroSlider setActiveTab={setActiveTab} />
-      <Services />
+      <HeroSlider />
+      {/* <div id="services-section">
+        <Services setActiveTab={setActiveTab} />
+      </div> */}
 
       {/* Shared Blueprint Background Container */}
       <div
@@ -37,7 +35,7 @@ const HomeScreen: React.FC<HomeScreenProps> = ({ setActiveTab }) => {
         />
         <ProcessSection />
         <FeatureBox />
-        <PortfolioPreview setActiveTab={setActiveTab} />
+        <PortfolioPreview />
         <Testimonials />
         <ExcellenceBox />
       </div>

@@ -1,8 +1,10 @@
 import { useState, useEffect } from "react";
+import { Routes, Route, useLocation } from "react-router-dom";
 import Navigation from "./components/layout/Navigation";
 import Footer from "./components/layout/Footer";
 import HomeScreen from "./screens/HomeScreen";
 import ServicesScreen from "./screens/ServicesScreen";
+import AboutScreen from "./screens/AboutScreen";
 import GalleryScreen from "./screens/GalleryScreen";
 import HomeInteriorScreen from "./screens/HomeInteriorScreen";
 import ModularKitchenScreen from "./screens/ModularKitchenScreen";
@@ -16,42 +18,97 @@ import LivingRoomInteriorScreen from "./screens/LivingRoomInteriorScreen";
 import WardrobeScreen from "./screens/WardrobeScreen";
 import ContactScreen from "./screens/ContactScreen";
 
-function App() {
-  const [activeTab, setActiveTab] = useState("home");
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const ScrollToTop = () => {
+  const { pathname } = useLocation();
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [activeTab]);
+  }, [pathname]);
+
+  return null;
+};
+
+function App() {
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a]">
-      <Navigation
-        activeTab={activeTab}
-        setActiveTab={setActiveTab}
-        isMobileMenuOpen={isMobileMenuOpen}
-        setIsMobileMenuOpen={setIsMobileMenuOpen}
-      />
+    <>
+      <ScrollToTop />
+      <div className="min-h-screen bg-white">
+        <Navigation
+          isMobileMenuOpen={isMobileMenuOpen}
+          setIsMobileMenuOpen={setIsMobileMenuOpen}
+        />
 
-      <main>
-        {activeTab === "home" && <HomeScreen setActiveTab={setActiveTab} />}
-        {activeTab === "services" && <ServicesScreen />}
-        {activeTab === "gallery" && <GalleryScreen />}
-        {activeTab === "home-interior" && <HomeInteriorScreen />}
-        {activeTab === "modular-kitchens" && <ModularKitchenScreen />}
-        {activeTab === "office-interior" && <OfficeInteriorScreen />}
-        {activeTab === "turnkey-interior" && <TurnkeyInteriorScreen />}
-        {activeTab === "interior-furnishing" && <InteriorFurnishingScreen />}
-        {activeTab === "architectural-design" && <ArchitecturalDesignScreen />}
-        {activeTab === "labor-services" && <LabourServicesScreen />}
-        {activeTab === "bedroom-interior" && <BedroomInteriorScreen />}
-        {activeTab === "living-room-interior" && <LivingRoomInteriorScreen />}
-        {activeTab === "wardrobe" && <WardrobeScreen />}
-        {activeTab === "contact" && <ContactScreen />}
-      </main>
+        <main>
+          <Routes>
+            <Route path="/" element={<HomeScreen />} />
+            <Route path="/about" element={<AboutScreen />} />
+            <Route path="/services" element={<ServicesScreen />} />
+            <Route path="/portfolio" element={<GalleryScreen />} />
+            <Route path="/contact" element={<ContactScreen />} />
 
-      <Footer setActiveTab={setActiveTab} />
-    </div>
+            {/* Service & Product Routes */}
+            <Route
+              path="/services/home-interior"
+              element={<HomeInteriorScreen />}
+            />
+            <Route
+              path="/services/modular-kitchens"
+              element={<ModularKitchenScreen />}
+            />
+            <Route
+              path="/services/office-interior"
+              element={<OfficeInteriorScreen />}
+            />
+            <Route
+              path="/services/turnkey-interior"
+              element={<TurnkeyInteriorScreen />}
+            />
+            <Route
+              path="/services/interior-furnishing"
+              element={<InteriorFurnishingScreen />}
+            />
+            <Route
+              path="/services/architectural-design"
+              element={<ArchitecturalDesignScreen />}
+            />
+            <Route
+              path="/services/labor-services"
+              element={<LabourServicesScreen />}
+            />
+
+            {/* These might be overlapped with Products or Services */}
+            <Route
+              path="/services/bedroom-interior"
+              element={<BedroomInteriorScreen />}
+            />
+            <Route
+              path="/services/living-room-interior"
+              element={<LivingRoomInteriorScreen />}
+            />
+            <Route path="/services/wardrobe" element={<WardrobeScreen />} />
+
+            {/* Products Routes mapping to same screens if appropriate */}
+            <Route
+              path="/products/modular-kitchens"
+              element={<ModularKitchenScreen />}
+            />
+            <Route
+              path="/products/bedroom-interior"
+              element={<BedroomInteriorScreen />}
+            />
+            <Route
+              path="/products/living-room-interior"
+              element={<LivingRoomInteriorScreen />}
+            />
+            <Route path="/products/wardrobe" element={<WardrobeScreen />} />
+          </Routes>
+        </main>
+
+        <Footer />
+      </div>
+    </>
   );
 }
 

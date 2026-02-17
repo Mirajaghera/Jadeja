@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
-import { ChevronRight, ArrowUpRight } from "lucide-react";
+import { ChevronRight } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 // Import portfolio images dynamically
 const imageModules = import.meta.glob("../../assets/Porfolio/*.jpg", {
@@ -16,22 +17,17 @@ const allImages = Object.entries(imageModules)
   .slice(0, 6)
   .map((item) => item.src);
 
-interface PortfolioPreviewProps {
-  setActiveTab: (tab: string) => void;
-}
-
-const PortfolioPreview: React.FC<PortfolioPreviewProps> = ({
-  setActiveTab,
-}) => {
+const PortfolioPreview: React.FC = () => {
   const [loadedImages, setLoadedImages] = useState<Record<number, boolean>>({});
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
     sectionRef.current && observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -85,7 +81,7 @@ const PortfolioPreview: React.FC<PortfolioPreviewProps> = ({
 
           {/* Desktop button with glow */}
           <button
-            onClick={() => setActiveTab("gallery")}
+            onClick={() => navigate("/portfolio")}
             className="hidden md:flex items-center gap-2 px-8 py-4 border border-[#C9A24D]/40 text-[#C9A24D] 
               hover:bg-[#C9A24D] hover:text-black hover:shadow-[0_0_30px_rgba(199,167,106,0.3)]
               transition-all duration-500 font-medium tracking-wider uppercase text-sm mt-8 md:mt-0"
@@ -180,12 +176,12 @@ const PortfolioPreview: React.FC<PortfolioPreviewProps> = ({
                   <h4 className="text-white text-lg font-medium mb-3">
                     Project {String(index + 1).padStart(2, "0")}
                   </h4>
-                  <div className="flex items-center gap-2 text-white/80 text-sm group/btn">
+                  {/* <div className="flex items-center gap-2 text-white/80 text-sm group/btn">
                     <span className="group-hover/btn:text-[#C9A24D] transition-colors">
                       View Details
                     </span>
                     <ArrowUpRight className="w-4 h-4 group-hover/btn:text-[#C9A24D] transition-all group-hover/btn:translate-x-0.5 group-hover/btn:-translate-y-0.5" />
-                  </div>
+                  </div> */}
                 </div>
               </div>
 
@@ -213,7 +209,7 @@ const PortfolioPreview: React.FC<PortfolioPreviewProps> = ({
 
           {/* Mobile CTA */}
           <button
-            onClick={() => setActiveTab("gallery")}
+            onClick={() => navigate("/portfolio")}
             className="md:hidden px-8 py-4 bg-[#C9A24D] text-black uppercase font-semibold tracking-wider text-sm
               hover:bg-white transition-all duration-500 shadow-[0_0_30px_rgba(199,167,106,0.2)]"
           >

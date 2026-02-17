@@ -1,7 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { services as sharedServices } from "../../data/services";
 
-const Services: React.FC = () => {
+interface ServicesProps {
+  setActiveTab: (tab: string) => void;
+}
+
+const Services: React.FC<ServicesProps> = ({ setActiveTab }) => {
   const [isVisible, setIsVisible] = useState(false);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
   const sectionRef = useRef<HTMLDivElement>(null);
@@ -9,7 +13,7 @@ const Services: React.FC = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     sectionRef.current && observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -58,6 +62,10 @@ const Services: React.FC = () => {
           {sharedServices.map((service, index) => (
             <div
               key={index}
+              onClick={() => {
+                setActiveTab(service.id);
+                window.scrollTo(0, 0);
+              }}
               onMouseEnter={() => setHoveredIndex(index)}
               onMouseLeave={() => setHoveredIndex(null)}
               className={`group relative overflow-hidden cursor-pointer

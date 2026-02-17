@@ -1,17 +1,13 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import { Instagram, Mail, Phone, MapPin } from "lucide-react";
 import footerBg from "../../assets/footer.jpg";
 
-interface FooterProps {
-  setActiveTab: (tab: string) => void;
-}
-
-const Footer: React.FC<FooterProps> = ({ setActiveTab }) => {
+const Footer: React.FC = () => {
   const quickLinks = [
-    { label: "Services", tab: "services" },
-    { label: "Portfolio", tab: "gallery" },
-    { label: "Why Choose Us", tab: "home" },
-    { label: "How We Work", tab: "home" },
+    { label: "Services", path: "/services" },
+    { label: "Portfolio", path: "/portfolio" },
+    { label: "Why Choose Us", path: "/" },
+    { label: "How We Work", path: "/" },
   ];
 
   const socialLinks = [
@@ -81,12 +77,12 @@ const Footer: React.FC<FooterProps> = ({ setActiveTab }) => {
               <ul className="space-y-3">
                 {quickLinks.map((link, index) => (
                   <li key={index}>
-                    <button
-                      onClick={() => setActiveTab(link.tab)}
+                    <Link
+                      to={link.path}
                       className="text-white/50 text-sm hover:text-[#C9A24D] transition-colors duration-300"
                     >
                       {link.label}
-                    </button>
+                    </Link>
                   </li>
                 ))}
               </ul>

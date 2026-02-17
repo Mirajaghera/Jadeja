@@ -18,11 +18,11 @@ const WardrobeScreen: React.FC = () => {
   useEffect(() => {
     const createObserver = (
       ref: React.RefObject<HTMLDivElement | null>,
-      setter: React.Dispatch<React.SetStateAction<boolean>>
+      setter: React.Dispatch<React.SetStateAction<boolean>>,
     ) => {
       const observer = new IntersectionObserver(
         ([entry]) => entry.isIntersecting && setter(true),
-        { threshold: 0.1 }
+        { threshold: 0.1 },
       );
       ref.current && observer.observe(ref.current);
       return observer;
@@ -435,7 +435,7 @@ const WardrobeScreen: React.FC = () => {
                   </h3>
                   <p className="text-white/70 text-sm">{type.desc}</p>
                 </div>
-                <div className="absolute top-4 right-4 w-10 h-10 bg-[#C9A24D] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+                {/* <div className="absolute top-4 right-4 w-10 h-10 bg-[#C9A24D] rounded-full flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
                   <svg
                     className="w-5 h-5 text-white"
                     viewBox="0 0 24 24"
@@ -445,7 +445,7 @@ const WardrobeScreen: React.FC = () => {
                   >
                     <path d="M5 12h14M12 5l7 7-7 7" />
                   </svg>
-                </div>
+                </div> */}
               </div>
             ))}
           </div>

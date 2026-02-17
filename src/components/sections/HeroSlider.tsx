@@ -1,8 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-
-interface HeroSliderProps {
-  setActiveTab: (tab: string) => void;
-}
+import { useNavigate } from "react-router-dom";
 
 const heroSlides = [
   {
@@ -28,12 +25,13 @@ const heroSlides = [
   },
 ];
 
-const HeroSlider: React.FC<HeroSliderProps> = ({ setActiveTab }) => {
+const HeroSlider: React.FC = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isTransitioning, setIsTransitioning] = useState(false);
   const [scrollY, setScrollY] = useState(0);
   const [imageKey, setImageKey] = useState(0);
   const heroRef = useRef<HTMLDivElement>(null);
+  const navigate = useNavigate();
 
   const changeSlide = (newIndex: number) => {
     if (isTransitioning || newIndex === currentIndex) return;
@@ -131,7 +129,7 @@ const HeroSlider: React.FC<HeroSliderProps> = ({ setActiveTab }) => {
         <div className="flex gap-4">
           <button
             className="bg-[#C9A24D] text-black uppercase tracking-wide py-3 px-8 text-sm hover:bg-[#b89558] transition-all"
-            onClick={() => setActiveTab("gallery")}
+            onClick={() => navigate("/portfolio")}
           >
             Explore Projects
           </button>
