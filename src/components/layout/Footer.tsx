@@ -38,8 +38,8 @@ const Footer: React.FC = () => {
       {/* Main Content */}
       <div className="relative z-10 pt-16 pb-12 md:pt-20 md:pb-16">
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
-          {/* Top Section - Added margin-left to center */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16 ml-0 md:ml-32 lg:ml-48">
+          {/* Top Section */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 lg:gap-8 mb-16">
             {/* Brand Column */}
             <div className="lg:col-span-1 flex flex-col items-center md:items-start">
               {/* Logo */}
@@ -85,6 +85,47 @@ const Footer: React.FC = () => {
                     </Link>
                   </li>
                 ))}
+              </ul>
+            </div>
+
+            {/* Services Column (SEO) */}
+            <div className="flex flex-col items-center md:items-start">
+              <h4 className="text-white font-semibold text-sm uppercase tracking-wider mb-6">
+                Specialized Services
+              </h4>
+              <ul className="space-y-3 flex flex-col items-center md:items-start">
+                <li>
+                  <Link
+                    to="/residential-interior-design-rajkot"
+                    className="text-white/50 text-sm hover:text-[#C9A24D] transition-colors duration-300"
+                  >
+                    Residential Interior Design
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/commercial-interior-designer-rajkot"
+                    className="text-white/50 text-sm hover:text-[#C9A24D] transition-colors duration-300 text-center md:text-left"
+                  >
+                    Commercial Interior Design
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/modular-kitchen-interior-rajkot"
+                    className="text-white/50 text-sm hover:text-[#C9A24D] transition-colors duration-300"
+                  >
+                    Modular Kitchen Interior
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/office-interior-design-rajkot"
+                    className="text-white/50 text-sm hover:text-[#C9A24D] transition-colors duration-300"
+                  >
+                    Office Interior Design
+                  </Link>
+                </li>
               </ul>
             </div>
 

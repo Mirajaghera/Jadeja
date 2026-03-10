@@ -103,6 +103,23 @@ function App() {
               element={<LivingRoomInteriorScreen />}
             />
             <Route path="/products/wardrobe" element={<WardrobeScreen />} />
+            {/* SEO Recommended Internal Service Pages */}
+            <Route
+              path="/residential-interior-design-rajkot"
+              element={<HomeInteriorScreen />}
+            />
+            <Route
+              path="/commercial-interior-designer-rajkot"
+              element={<OfficeInteriorScreen />}
+            />
+            <Route
+              path="/modular-kitchen-interior-rajkot"
+              element={<ModularKitchenScreen />}
+            />
+            <Route
+              path="/office-interior-design-rajkot"
+              element={<OfficeInteriorScreen />}
+            />
           </Routes>
         </main>
 
