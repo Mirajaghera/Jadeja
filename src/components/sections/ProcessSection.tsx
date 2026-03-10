@@ -7,29 +7,30 @@ const ProcessSection: React.FC = () => {
   const steps = [
     {
       number: "01",
-      title: "Initial Consultation",
-      desc: "We begin by understanding your vision, goals, and needs, followed by a detailed analysis.",
+      title:
+        "Residential Interior Design – Living Room, Bedroom & Kitchen Interiors",
+      desc: "Tailored residential spaces that perfectly reflect your lifestyle.",
       image:
         "https://images.unsplash.com/photo-1600880292203-757bb62b4baf?q=80&w=600&auto=format&fit=crop",
     },
     {
       number: "02",
-      title: "Design & Planning",
-      desc: "Our team creates detailed designs that reflect your requirements.",
+      title: "Commercial & Office Interior Design Solutions",
+      desc: "Inspiring workspaces designed for productivity and brand identity.",
       image:
         "https://images.unsplash.com/photo-1581094794329-c8112a89af12?q=80&w=600&auto=format&fit=crop",
     },
     {
       number: "03",
-      title: "Implementation",
-      desc: "With carefully selected contractors, we manage every phase.",
+      title: "Modern & Minimalist Interior Design Concepts",
+      desc: "Clean lines and sophisticated designs that maximize space and light.",
       image:
         "https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=600&auto=format&fit=crop",
     },
     {
       number: "04",
-      title: "Project Handover",
-      desc: "Upon completion, we conduct a thorough review, ensuring perfection and satisfaction.",
+      title: "Turnkey & Custom Interior Design Services in Rajkot",
+      desc: "End-to-end management for a seamless and hassle-free experience.",
       image:
         "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=600&auto=format&fit=crop",
     },
@@ -38,7 +39,7 @@ const ProcessSection: React.FC = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.2 }
+      { threshold: 0.2 },
     );
 
     sectionRef.current && observer.observe(sectionRef.current);
@@ -61,16 +62,16 @@ const ProcessSection: React.FC = () => {
           }`}
         >
           <span className="uppercase tracking-[0.25em] text-[#C9A24D] text-xs font-semibold">
-            How We Work
+            What We Offer
           </span>
 
           <h2 className="mt-3 text-4xl sm:text-5xl lg:text-6xl font-bold text-[#1a1a1a] leading-tight">
-            Our <span className="text-[#C9A24D]">Premium</span> Interior Process
+            Our Interior Design Services in Rajkot
           </h2>
 
           <p className="mt-4 text-[#555] text-base">
-            A streamlined, transparent, and client-centric journey to create
-            exceptional living spaces.
+            Comprehensive interior solutions tailored to transform your vision
+            into stunning reality.
           </p>
         </div>
 

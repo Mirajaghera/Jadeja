@@ -7,26 +7,26 @@ const ExcellenceBox: React.FC = () => {
 
   const items = [
     {
-      title: "Premium Materials",
-      desc: "Top-grade materials ensuring exceptional durability and timeless elegance.",
+      title: "48+ Successfully Completed Interior Projects",
+      desc: "Delivering top-notch residential and commercial projects with exceptional quality.",
       icon: Layers,
       number: "01",
     },
     {
-      title: "Skilled Designers",
-      desc: "Expert creativity combined with functional precision and innovation.",
+      title: "90+ Satisfied Clients Across Rajkot",
+      desc: "Building lasting relationships through trust, transparency, and superior design.",
       icon: Users,
       number: "02",
     },
     {
-      title: "Transparent Process",
-      desc: "Clear timelines, honest communication, and no hidden costs.",
+      title: "Expert Space Planning & Layout Solutions",
+      desc: "Optimizing your space for maximum functionality, flow, and modern aesthetics.",
       icon: CheckCircle,
       number: "03",
     },
     {
-      title: "Personalized Approach",
-      desc: "Tailored designs to match your unique style and space requirements.",
+      title: "Client Reviews & Testimonials",
+      desc: "Our work speaks through the glowing feedback and satisfaction of our clients.",
       icon: PenTool,
       number: "04",
     },
@@ -35,7 +35,7 @@ const ExcellenceBox: React.FC = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
     sectionRef.current && observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -66,9 +66,7 @@ const ExcellenceBox: React.FC = () => {
             </span>
 
             <h2 className="text-[#1a1a1a] text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-wide mt-4 leading-tight">
-              Experience
-              <span className="block text-[#C9A24D]">Excellence</span>
-              In Every Detail
+              Why Choose Jadeja Studio for Home & Office Interiors
             </h2>
 
             <p className="text-[#666] mt-6 text-sm md:text-base leading-relaxed max-w-md">
@@ -134,7 +132,7 @@ const ExcellenceBox: React.FC = () => {
           }`}
         >
           <span className="text-[#C9A24D]/50 tracking-[0.3em] text-xs uppercase">
-            Trusted by 75+ Happy Clients
+            Trusted by 90+ Happy Clients
           </span>
         </div>
       </div>

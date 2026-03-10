@@ -39,7 +39,7 @@ const Testimonials: React.FC = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
     sectionRef.current && observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -67,7 +67,7 @@ const Testimonials: React.FC = () => {
           </span>
 
           <h2 className="text-[#1a1a1a] text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-wide mt-4">
-            What Our <span className="text-[#C9A24D]">Clients Say</span>
+            Trusted Residential & Commercial Interior Designers in Rajkot
           </h2>
 
           <p className="text-[#666] max-w-2xl mx-auto mt-6 text-sm md:text-base leading-relaxed">
@@ -143,15 +143,16 @@ const Testimonials: React.FC = () => {
 
         {/* Stats row */}
         <div
-          className={`grid grid-cols-3 gap-8 mt-16 pt-12 border-t border-[#e0e0e0]
+          className={`grid grid-cols-2 md:grid-cols-4 gap-8 mt-16 pt-12 border-t border-[#e0e0e0]
             transition-all duration-1000 delay-500 ${
               isVisible ? "opacity-100" : "opacity-0"
             }`}
         >
           {[
-            { number: "50+", label: "Projects Completed" },
-            { number: "75+", label: "Happy Clients" },
+            { number: "100+", label: "Projects Completed" },
+            { number: "90+", label: "Happy Clients" },
             { number: "Award Winning", label: "Service Quality" },
+            { number: "5+", label: "Years Experience" },
           ].map((stat, index) => (
             <div key={index} className="text-center">
               <span className="block text-3xl md:text-4xl font-bold text-[#C9A24D]">

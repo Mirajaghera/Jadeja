@@ -67,10 +67,7 @@ const PortfolioPreview: React.FC = () => {
             </span>
 
             <h2 className="text-white text-3xl sm:text-4xl lg:text-5xl font-semibold tracking-wide mt-4">
-              Selected
-              <span className="text-[#C9A24D] block md:inline">
-                &nbsp;Works
-              </span>
+              Interior Design Portfolio & Project Showcase in Rajkot
             </h2>
 
             <p className="text-white/50 text-sm sm:text-base max-w-md mt-4 leading-relaxed">
@@ -173,9 +170,15 @@ const PortfolioPreview: React.FC = () => {
                   <span className="text-[#C9A24D] text-xs tracking-[0.2em] uppercase mb-2 block">
                     Interior Design
                   </span>
-                  <h4 className="text-white text-lg font-medium mb-3">
-                    Project {String(index + 1).padStart(2, "0")}
-                  </h4>
+                  <h3 className="text-white text-lg font-medium mb-3">
+                    {index === 0
+                      ? "Residential Interior Projects in Rajkot"
+                      : index === 1
+                        ? "Commercial & Office Interior Projects"
+                        : index === 2
+                          ? "Modern Flat & Apartment Interior Designs"
+                          : `Project ${String(index + 1).padStart(2, "0")}`}
+                  </h3>
                   {/* <div className="flex items-center gap-2 text-white/80 text-sm group/btn">
                     <span className="group-hover/btn:text-[#C9A24D] transition-colors">
                       View Details

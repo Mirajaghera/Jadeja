@@ -1,6 +1,6 @@
 import React from "react";
 import HeroSlider from "../components/sections/HeroSlider";
-// import Services from "../components/sections/WhyChoose";
+import SEOIntroSection from "../components/sections/SEOIntroSection";
 import ProcessSection from "../components/sections/ProcessSection";
 import FeatureBox from "../components/sections/FeatureBox";
 import PortfolioPreview from "../components/sections/PortfolioPreview";
@@ -12,6 +12,7 @@ const HomeScreen: React.FC = () => {
   return (
     <div className="animate-fade-in">
       <HeroSlider />
+      <SEOIntroSection />
       {/* <div id="services-section">
         <Services setActiveTab={setActiveTab} />
       </div> */}

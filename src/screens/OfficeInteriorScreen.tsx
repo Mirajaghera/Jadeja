@@ -10,7 +10,7 @@ const OfficeInteriorScreen: React.FC = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setIsVisible(true),
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     sectionRef.current && observer.observe(sectionRef.current);
     return () => observer.disconnect();
@@ -19,7 +19,7 @@ const OfficeInteriorScreen: React.FC = () => {
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => entry.isIntersecting && setPreviewVisible(true),
-      { threshold: 0.1 }
+      { threshold: 0.1 },
     );
     previewRef.current && observer.observe(previewRef.current);
     return () => observer.disconnect();
@@ -148,7 +148,7 @@ const OfficeInteriorScreen: React.FC = () => {
                   <p className="text-white/60 text-sm mt-1">Years Experience</p>
                 </div>
                 <div className="p-4 bg-white/5 border border-white/10">
-                  <span className="text-3xl font-bold text-[#C9A24D]">50+</span>
+                  <span className="text-3xl font-bold text-[#C9A24D]">90+</span>
                   <p className="text-white/60 text-sm mt-1">
                     Corporate Clients
                   </p>

@@ -9,18 +9,21 @@ const heroSlides = [
     headline1: "Transforming Spaces",
     headline2: "Into Masterpieces",
     tagline: "Luxury Living Redefined",
+    alt: "modern living room interior design Rajkot by Jadeja Studio",
   },
   {
     image: image2,
     headline1: "Where Elegance",
     headline2: "Meets Innovation",
     tagline: "Modern Interior Excellence",
+    alt: "office interior designer in Rajkot commercial project",
   },
   {
     image: image3,
     headline1: "Crafting Dreams",
     headline2: "With Timeless Design",
     tagline: "Premium Design Studio",
+    alt: "modular kitchen interior design Rajkot",
   },
 ];
 
@@ -84,6 +87,7 @@ const HeroSlider: React.FC = () => {
           <img
             key={index === currentIndex ? imageKey : index}
             src={slide.image}
+            alt={slide.alt}
             className="w-full h-full object-cover"
             style={{
               transform: `translateY(${scrollY * 0.25}px)`,
@@ -106,13 +110,13 @@ const HeroSlider: React.FC = () => {
         </span>
 
         {/* Headline */}
-        <h1 className="text-white text-4xl sm:text-6xl lg:text-7xl uppercase font-light drop-shadow-xl mb-3">
+        <div className="text-white text-4xl sm:text-6xl lg:text-7xl uppercase font-light drop-shadow-xl mb-3">
           {currentSlide.headline1}
-        </h1>
+        </div>
 
-        <h1 className="text-[#C9A24D] text-4xl sm:text-6xl lg:text-7xl uppercase font-light drop-shadow-xl mb-8">
+        <div className="text-[#C9A24D] text-4xl sm:text-6xl lg:text-7xl uppercase font-light drop-shadow-xl mb-8">
           {currentSlide.headline2}
-        </h1>
+        </div>
 
         {/* Divider */}
         <div className="w-20 h-[1px] bg-[#C9A24D] opacity-75 mb-8"></div>
